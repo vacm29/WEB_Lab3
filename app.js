@@ -21,6 +21,8 @@ app.route('/pokemon/request').post(function (req, res){
         axios.get(URL)
         .then(pokemon_response => {
             let pokemon_data = pokemon_response.data;
+			//let pkmName = pokemon_data.name;
+			//let pkmWeight = pokemon_data.weight;
             res.send(pokemon_data);
         }).catch(function(error){
             console.log(error);

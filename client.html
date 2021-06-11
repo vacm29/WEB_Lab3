@@ -4,15 +4,64 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>Pokemon Client</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Pokemon Client</title>
 	</head>
   <body>
-  	<form action="http://127.0.0.1:3000/pokemon/request" method="POST">
-  		Pokemon Name: <input type = "text" name="name"/> <br>
-		<input type ="submit" name="submit" value = "Send Request">
-  	</form>
+	<form action="http://127.0.0.1:3000/pokemon/request" method="POST">
+		Pokemon Name: <input type = "text" name="name"/> <br>
+	  <input type ="submit" name="submit" value = "Send Request">
+	</form>
 
     <h2>Current elements</h2>
     <div id="results"></div>
-</body>
+
+    <script>
+
+  		event.preventDefault();
+		
+
+		//debugger
+		var src = document.getElementById("results");
+		
+		var pkmCard = document.createElement("div");
+		pkmCard.setAttribute("class", "card mb-3");
+		pkmCard.setAttribute("style", "width: 18rem;");
+
+		var pkmImg = document.createElement("img");
+		pkmImg.src = pokemonObj.sprites.front_default;
+		pkmImg.setAttribute("class", "card-img-top");
+		pkmImg.alt = pokemonObj.name;
+		pkmCard.appendChild(pkmImg);
+		
+		var pkmCardSub1 = document.createElement("div");
+		pkmCardSub1.setAttribute("class","card-body");
+		pkmCard.appendChild(pkmCardSub1);
+		
+		var cardHeader = document.createElement("h5");
+		cardHeader.setAttribute("class", "card-title");
+		cardHeader.innerText = "Pokemon Name: " + pokemonObj.name;
+		pkmCardSub1.appendChild(cardHeader);
+
+		var cardList = document.createElement("ul");
+		cardList.setAttribute("class","list-group list-group-flush");
+		pkmCard.appendChild(cardList);
+		
+		var cardListPkmId = document.createElement("il");
+		cardListPkmId.setAttribute("class", "list-group-item");
+		cardListPkmId.innerText = "PokeDex number: " + pokemonObj.id;
+		cardList.appendChild(cardListPkmId);
+		
+		var cardListPkmType = document.createElement("il");
+		cardListPkmType.setAttribute("class", "list-group-item");
+		cardListPkmType.innerText = "Pokemon Type: " + pokemonObj.types[0].type.name;
+		cardList.appendChild(cardListPkmType);
+		
+		src.appendChild(pkmCard);
+
+    </script>
+  </body>
 </html>
